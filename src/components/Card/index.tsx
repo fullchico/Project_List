@@ -1,47 +1,120 @@
+import {
+    MdDoneAll,
+    MdCreate,
+    MdModeEdit,
+    MdDoNotDisturb,
+    MdDelete,
+} from "react-icons/md";
 import { Container } from "./styles";
 
-export default function Card() {
+interface Props {
+    id: number;
+    responsavel: string;
+    titulo: string;
+    descricao: string;
+    viabilidade: number;
+    status: string;
+    dataInicio: string;
+    dataFinal: string;
+    iniciado?: string;
+    finalizado?: string;
+}
+
+export default function Card(props: Props) {
+    function Test() {
+        switch (props.viabilidade) {
+            case 1:
+                return "baixa";
+            case 2:
+                return "semibaixa";
+
+            case 3:
+                return "media";
+
+            case 4:
+                return "semialta";
+
+            case 5:
+                return "alta";
+
+            default:
+                return "";
+        }
+    }
     return (
-        <Container className="baixa">
+        <Container className={`${Test()}`}>
             <section>
-                <span
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                    <button>Cancelar</button>
-                    <button>editar</button>
-                </span>
+                {props.status === "concluido" ||
+                props.status === "cancelado" ? null : (
+                    <span className="TopButtonsCard">
+                        <button>
+                            <MdDelete />
+                        </button>
+                        <button>
+                            <MdModeEdit />
+                        </button>
+                    </span>
+                )}
+
+                <br />
 
                 <section>
-                    <h3>Desenvolver App mobile</h3>
+                    <h3>{props.titulo}</h3>
+                    <h5>
+                        <b>Viabilidade: {props.viabilidade}</b>
+                    </h5>
 
-                    <span>Data: </span>
+                    <br />
 
+                    <span>
+                        {" "}
+                        <b>Data: </b>
+                    </span>
                     <span>inicio:</span>
-                    <span>12/01/21</span>
+                    <span>{props.dataInicio}</span>
                     <span> | </span>
                     <span>final:</span>
-                    <span>12/01/21</span>
+                    <span>{props.dataFinal}</span>
                 </section>
 
                 <br />
 
                 <p>
-                    <b>Descrição:</b> Lorem ipsum, dolor sit amet consectetur
-                    adipisicing elit. Enim libero, pariatur neque quos nesciunt
-                    vel illum voluptas hic deleniti quasi vitae! Dolor beatae
-                    quod corporis, inciduntrepudiandae vero atque voluptate.
+                    <b>Descrição:</b> {props.descricao}
                 </p>
+
                 <br />
+
                 <section>
-                    <span>Responsavel: Diogo</span>
+                    <span>
+                        <b>Responsavel:</b> {props.responsavel}
+                    </span>
                 </section>
             </section>
 
-            <footer
-                style={{ display: "flex", justifyContent: "space-between" }}
-            >
-                <span>iniciado:12/01/21 | 08:00</span>
-                <button>inciar</button>
+            <br />
+
+            <footer>
+                {props.finalizado !== "" ? (
+                    <span>
+                        <b>finalizado: </b>
+                        {props.finalizado}
+                    </span>
+                ) : (
+                    <span>
+                        <b>iniciado: </b>
+                        {props.iniciado}
+                    </span>
+                )}
+
+                {props.status === "concluido" ||
+                props.status === "cancelado" ? (
+                    <button className={props.status}>{props.status}</button>
+                ) : (
+                    <button>
+                        {props.status === "iniciado" ? "finalizado" : "iniciar"}
+                    </button>
+                )}
             </footer>
         </Container>
     );

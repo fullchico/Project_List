@@ -1,30 +1,50 @@
+import { useEffect, useState } from "react";
+import api from "../../service/api";
+
 import Card from "../Card";
 import { Container } from "./styles";
+
 interface PropsBoard {
     title: string;
     button?: boolean;
+    typeFilter?: string;
 }
 
-export default function index({ title, button }: PropsBoard) {
-    function HandleButton() {
-        alert("Clicou");
-    }
+interface ListProject {
+    id: number;
+    responsavel: string;
+    titulo: string;
+    descricao: string;
+    viabilidade: number;
+    status: string;
+    dataInicio: string;
+    dataFinal: string;
+    iniciado: string;
+    finalizado: string;
+}
+
+export default function List({ title, button, typeFilter }: PropsBoard) {
+    const [list, setList] = useState<ListProject[]>([]);
+
+    useEffect(() => {
+        api.get("list")
+            .then((response) => (response = response.data))
+            .then((data) => setList(data));
+    }, []);
 
     return (
         <Container>
             <header>
                 <h2>{title}</h2>
-                {button && (
-                    <button onClick={HandleButton} type="button">
-                        +
-                    </button>
-                )}
+                {button && <button type="button">+</button>}
             </header>
 
             <ul>
-                <Card />
-                <Card />
-                <Card />
+                {list.map((card) =>
+                    card.status === typeFilter ? (
+                        <Card key={card.id} {...card} />
+                    ) : null
+                )}
             </ul>
         </Container>
     );
