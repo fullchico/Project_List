@@ -14,6 +14,13 @@ export const GlobalStyle = createGlobalStyle`
     --text-body: #969cb3;
     --background: #F0F2F5;
     --shape: #FFFFFF;
+
+    /* nivel  */
+    --baixo: #FFB900;
+    --semibaixo: #FF9D00;
+    --medio:#FF8900;
+    --semialto:#FF6700;
+    --alto:#FF4100;
 }
 * {
     margin: 0;
@@ -21,10 +28,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 }
 html{
-    @media(max-width: 1080px){
+    @media(max-width: 67,5rem){
         font-size: 93.75%;
     }
-    @media(max-width: 720px){
+    @media(max-width: 45rem){
         font-size: 87.5%;
     }
 }
@@ -39,6 +46,7 @@ body, input, textarea, button{
 button{
     cursor: pointer;
 }
+
 [disabled]{
     opacity: 0.6;
     cursor: not-allowed;
@@ -57,7 +65,7 @@ button{
     }
     .react-modal-content{
         width: 100%;
-        max-width:576px;
+        max-width:36rem;
         background: var(--background);
         padding:3rem;
         position: relative;

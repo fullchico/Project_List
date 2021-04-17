@@ -1,8 +1,5 @@
 import Card from "../Card";
 import { Container } from "./styles";
-
-import { MdAdd } from "react-icons/md";
-
 interface PropsBoard {
     title: string;
     button?: boolean;

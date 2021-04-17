@@ -1,37 +1,40 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    padding: 0 15px;
+    padding: 0 0.8rem;
     height: 100%;
-    flex: 0 0 320px;
+    flex: 0 0 20rem;
 
     & + div {
-        border-left: 1px solid rgba(0, 0, 0, 0.05);
+        border-left: 0.06rem solid rgba(0, 0, 0, 0.05);
     }
 
     header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 42px;
+        height: 2, 6rem;
 
         h2 {
             font-weight: bold;
-            font-size: 16px;
-            padding: 0 10px;
+            font-size: 1rem;
+            padding: 0 0.6rem;
         }
 
         button {
-            width: 2rem;
-            height: 2rem;
+            width: 5rem;
+            height: 1rem;
+
+            font-size: 1rem;
 
             padding: 0;
 
-            border-radius: 0.5rem;
+            margin: 0;
+            border-radius: 0.2rem;
             background: var(--text-title);
             border: none;
             cursor: pointer;
-            outline: 0px auto -webkit-focus-ring-color;
+            outline: 0rem auto -webkit-focus-ring-color;
 
             color: var(--shape);
 
@@ -44,6 +47,6 @@ export const Container = styled.div`
     }
 
     ul {
-        margin-top: 30px;
+        margin-top: 1.8rem;
     }
 `;

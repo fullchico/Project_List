@@ -1,4 +1,3 @@
-import React from "react";
 import Summery from "../Summery";
 
 import { Container } from "./styles";
