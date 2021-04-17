@@ -23,7 +23,7 @@ export const Container = styled.div`
 
         button {
             width: 5rem;
-            height: 1rem;
+            height: 1.2rem;
 
             font-size: 1rem;
 
@@ -34,6 +34,9 @@ export const Container = styled.div`
             background: var(--text-title);
             border: none;
             cursor: pointer;
+
+            font-size: 1.2rem;
+            color: var(--shape);
             outline: 0rem auto -webkit-focus-ring-color;
 
             color: var(--shape);

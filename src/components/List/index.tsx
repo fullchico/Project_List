@@ -1,3 +1,5 @@
+import { MdAdd } from "react-icons/md";
+
 import { useEffect, useState } from "react";
 import api from "../../service/api";
 
@@ -36,7 +38,11 @@ export default function List({ title, button, typeFilter }: PropsBoard) {
         <Container>
             <header>
                 <h2>{title}</h2>
-                {button && <button type="button">+</button>}
+                {button && (
+                    <button type="button">
+                        <MdAdd />
+                    </button>
+                )}
             </header>
 
             <ul>

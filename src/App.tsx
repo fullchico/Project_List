@@ -1,3 +1,4 @@
+import React from "react";
 import Board from "./components/Board";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
