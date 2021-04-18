@@ -1,10 +1,10 @@
-import { MdAdd } from "react-icons/md";
-
-import { useEffect, useState } from "react";
-import api from "../../service/api";
+import { useContext } from "react";
+import { CardContext } from "../../hooks/CardContext";
 
 import Card from "../Card";
+
 import { Container } from "./styles";
+import { MdAdd } from "react-icons/md";
 
 interface PropsBoard {
     title: string;
@@ -12,39 +12,22 @@ interface PropsBoard {
     typeFilter?: string;
 }
 
-interface ListProject {
-    id: number;
-    responsavel: string;
-    titulo: string;
-    descricao: string;
-    viabilidade: number;
-    status: string;
-    dataInicio: string;
-    dataFinal: string;
-    iniciado: string;
-    finalizado: string;
-}
-
 export default function List({ title, button, typeFilter }: PropsBoard) {
-    const [list, setList] = useState<ListProject[]>([]);
-
-    useEffect(() => {
-        api.get("list")
-            .then((response) => (response = response.data))
-            .then((data) => setList(data));
-    }, []);
+    const { list, hadleOpenModalCreateCard } = useContext(CardContext);
 
     return (
         <Container>
             <header>
                 <h2>{title}</h2>
                 {button && (
-                    <button type="button">
+                    <button
+                        type="button"
+                        onClick={() => hadleOpenModalCreateCard()}
+                    >
                         <MdAdd />
                     </button>
                 )}
             </header>
-
             <ul>
                 {list.map((card) =>
                     card.status === typeFilter ? (

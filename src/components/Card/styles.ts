@@ -1,33 +1,36 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface ValidateNivel {
+    viabilidade: number;
+}
+
+export const Container = styled.div<ValidateNivel>`
     position: relative;
     background: #fff;
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 15px;
     box-shadow: 0 1px 4px 0 rgba(192, 208, 230, 0.8);
-    border-top: 1.25rem solid rgba(230, 236, 245, 0.4);
+    border-top: ${(props) => {
+        switch (props.viabilidade) {
+            case 1:
+                return `1.25rem solid var(--baixo)`;
+            case 2:
+                return `1.25rem solid var(--semibaixo)`;
 
-    &.baixa {
-        border-top: 1.25rem solid var(--baixo);
-    }
+            case 3:
+                return `1.25rem solid var(--medio)`;
 
-    &.semibaixa {
-        border-top: 1.25rem solid var(--semibaixo);
-    }
+            case 4:
+                return `1.25rem solid var(--semialto)`;
 
-    &.media {
-        border-top: 1.25rem solid var(--medio);
-    }
+            case 5:
+                return `1.25rem solid var(--alto)`;
 
-    &.semialta {
-        border-top: 1.25rem solid var(--semialto);
-    }
-
-    &.alta {
-        border-top: 1.25rem solid var(--alto);
-    }
+            default:
+                return "";
+        }
+    }};
 
     span {
         &.TopButtonsCard {
@@ -83,12 +86,13 @@ export const Container = styled.div`
 
             outline: 0rem auto -webkit-focus-ring-color;
 
-            background: var(--text-title);
             color: var(--shape);
 
             font-weight: bold;
 
             transition: background 2s;
+
+            background: var(--text-title);
 
             &:hover {
                 opacity: 0.8;

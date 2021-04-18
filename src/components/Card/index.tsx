@@ -1,13 +1,7 @@
-import {
-    MdDoneAll,
-    MdCreate,
-    MdModeEdit,
-    MdDoNotDisturb,
-    MdDelete,
-} from "react-icons/md";
+import { MdModeEdit, MdDelete } from "react-icons/md";
 import { Container } from "./styles";
 
-interface Props {
+interface CardProps {
     id: number;
     responsavel: string;
     titulo: string;
@@ -20,29 +14,9 @@ interface Props {
     finalizado?: string;
 }
 
-export default function Card(props: Props) {
-    function Test() {
-        switch (props.viabilidade) {
-            case 1:
-                return "baixa";
-            case 2:
-                return "semibaixa";
-
-            case 3:
-                return "media";
-
-            case 4:
-                return "semialta";
-
-            case 5:
-                return "alta";
-
-            default:
-                return "";
-        }
-    }
+export default function Card(props: CardProps) {
     return (
-        <Container className={`${Test()}`}>
+        <Container viabilidade={props.viabilidade}>
             <section>
                 {props.status === "concluido" ||
                 props.status === "cancelado" ? null : (
