@@ -32,7 +32,24 @@ export const Container = styled.div<ValidateNivel>`
         }
     }};
 
+    section {
+        margin-bottom: 0.5rem;
+
+        h5 {
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 0.5rem;
+        }
+    }
+
     span {
+        margin-bottom: 1rem;
         &.TopButtonsCard {
             display: flex;
             justify-content: space-between;

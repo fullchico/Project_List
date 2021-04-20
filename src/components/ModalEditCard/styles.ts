@@ -186,3 +186,9 @@ export const ListViabilidade = styled.li<ValidateNivel>`
         }};
     }
 `;
+
+interface SituacaoProject {
+    status: number;
+    inputStatus?: number;
+}
+export const situacaoProject = styled.li<SituacaoProject>``;

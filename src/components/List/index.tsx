@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { CardContext } from "../../hooks/CardContext";
-
 import Card from "../Card";
 
 import { Container } from "./styles";

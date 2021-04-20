@@ -1,5 +1,6 @@
 import List from "../List";
 import ModalCreatCard from "../ModalCreatCard";
+import ModalEditCard from "../ModalEditCard";
 import { Container, Content } from "./styles";
 
 export default function Board() {
@@ -7,6 +8,7 @@ export default function Board() {
         <Container>
             <Content>
                 <ModalCreatCard />
+                <ModalEditCard />
                 <List title="Projetado" button={true} typeFilter="projetado" />
 
                 <List title="Desenvolvimento" typeFilter="iniciado" />
