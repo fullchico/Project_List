@@ -9,6 +9,7 @@ export default function Board() {
             <Content>
                 <ModalCreatCard />
                 <ModalEditCard />
+
                 <List title="Projetado" button={true} typeFilter="projetado" />
 
                 <List title="Desenvolvimento" typeFilter="iniciado" />

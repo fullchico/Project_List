@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import api from "../service/api";
 
 // interface para inglobar o contexto
@@ -64,14 +65,12 @@ export function CardProvider({ children }: CardProviderProps) {
 
     // Criar um novo projeto
     async function createCardProject(data: ListProject) {
-        alert("cadastro realizadso");
-
         const response = await api.post("list", data);
 
         const listDate = response.data;
 
         setList([...list, listDate]);
-
+        toast.success("Projeto cadastrado!");
         setIsOpenModalCreateCard(false);
     }
 
@@ -87,6 +86,7 @@ export function CardProvider({ children }: CardProviderProps) {
         const date = response.data;
 
         setList([date, ...newData]);
+        toast.warning("Projeto editado!");
         hadleOpenModalEditCard();
     }
 
@@ -111,6 +111,7 @@ export function CardProvider({ children }: CardProviderProps) {
         const date = editResponse.data;
 
         setList([date, ...newData]);
+        toast.error("Projeto cancelado!");
     }
 
     // mudança de estado para conlcuido
@@ -136,6 +137,7 @@ export function CardProvider({ children }: CardProviderProps) {
         const date = editResponse.data;
 
         setList([date, ...newData]);
+        toast.success("Projeto concluido!");
     }
 
     // mudança do estado para  desenvolvimento
@@ -162,6 +164,7 @@ export function CardProvider({ children }: CardProviderProps) {
         const date = editResponse.data;
 
         setList([date, ...newData]);
+        toast.info("Projeto Iniciado!");
     }
 
     // passando valor do prejto id, e injetando no localStorag

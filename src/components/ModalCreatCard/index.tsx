@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { CardContext } from "../../hooks/CardContext";
 import { v4 as uuidv4 } from "uuid";
 
@@ -12,6 +12,8 @@ import {
 } from "./styles";
 
 import Modal from "react-modal";
+import { toast } from "react-toastify";
+
 Modal.setAppElement("#root");
 
 export default function ModalCreatCard() {
@@ -46,7 +48,22 @@ export default function ModalCreatCard() {
             finalizado: "",
         };
 
+        // validação de campos
+        if (data.titulo === "") return toast.error("ensira o titulo");
+
+        if (data.descricao === "") return toast.error("informer a descrição");
+
+        if (data.dataInicio === "Invalid Date")
+            return toast.error("Ensira a data inicial");
+
+        if (data.dataFinal === "Invalid Date")
+            return toast.error("insira a data final");
+
+        if (data.responsavel === "")
+            return toast.error("ensira o Autor do projeto");
+
         createCardProject(data);
+
         // Zerando states
         setInputTitulo("");
         setInputDescricao("");
@@ -68,7 +85,7 @@ export default function ModalCreatCard() {
 
                 <button
                     className="react-modal-close"
-                    onClick={(event: FormEvent) => {
+                    onClick={(event) => {
                         event.preventDefault();
                         hadleOpenModalCreateCard();
                     }}

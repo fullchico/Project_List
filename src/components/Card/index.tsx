@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { MdModeEdit, MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 import { CardContext } from "../../hooks/CardContext";
-import ModalEditCard from "../ModalEditCard";
+
 import { Container } from "./styles";
 
 interface CardProps {
@@ -34,7 +35,9 @@ export default function Card(props: CardProps) {
                         <span className="TopButtonsCard">
                             <button>
                                 <MdDelete
-                                    onClick={() => cancelCard(props.id)}
+                                    onClick={() => {
+                                        cancelCard(props.id);
+                                    }}
                                 />
                             </button>
 
