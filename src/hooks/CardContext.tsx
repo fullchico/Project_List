@@ -87,7 +87,7 @@ export function CardProvider({ children }: CardProviderProps) {
             toast.success("Projeto cadastrado!");
             setIsOpenModalCreateCard(false);
 
-            if (response.status !== 200) throw new Error(response.headers);
+            if (response.status !== 201) throw new Error(response.headers);
         } catch (error) {
             toast.error("Error ao criar projeto, servidor off");
             setIsOpenModalCreateCard(false);
@@ -110,7 +110,7 @@ export function CardProvider({ children }: CardProviderProps) {
             setList([date, ...newData]);
             toast.warning("Projeto editado!");
             hadleOpenModalEditCard();
-            if (response.status !== 200) throw new Error(response.headers);
+            if (response.status !== 201) throw new Error(response.headers);
         } catch (error) {
             toast.error("Error ao editar projeto, servidor off");
             return false;
