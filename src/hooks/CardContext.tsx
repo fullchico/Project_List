@@ -33,7 +33,7 @@ interface CardProps {
 
     hadleOpenModalCreateCard: () => void;
     hadleOpenModalEditCard: () => void;
-    createCardProject: (date: ListProject) => boolean | any;
+    createCardProject: (date: ListProject) => void;
     editCardProject: (date: ListProject) => void;
     editCard: (id: string) => void;
     cancelCard: (id: string) => void;
@@ -90,7 +90,8 @@ export function CardProvider({ children }: CardProviderProps) {
             if (response.status !== 200) throw new Error(response.headers);
         } catch (error) {
             toast.error("Error ao criar projeto, servidor off");
-            return false;
+            setIsOpenModalCreateCard(false);
+            return;
         }
     }
 

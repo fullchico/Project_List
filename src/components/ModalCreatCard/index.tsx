@@ -67,18 +67,16 @@ export default function ModalCreatCard() {
         if (data.responsavel === "")
             return toast.error("ensira o Autor do projeto");
 
-        const response = createCardProject(data);
+        createCardProject(data);
 
-        if (response === true) {
-            // Zerando states
-            setInputTitulo("");
-            setInputDescricao("");
-            setInpuValorExecucao(0);
-            setInputValidade(1);
-            setInpuDatatInicial("");
-            setInputDataFinal("");
-            setInputAutor("");
-        }
+        // Zerando states
+        setInputTitulo("");
+        setInputDescricao("");
+        setInpuValorExecucao(0);
+        setInputValidade(1);
+        setInpuDatatInicial("");
+        setInputDataFinal("");
+        setInputAutor("");
     }
 
     return (
