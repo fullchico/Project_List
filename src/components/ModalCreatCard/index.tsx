@@ -21,6 +21,7 @@ export default function ModalCreatCard() {
     const [inputDescricao, setInputDescricao] = useState("");
     const [inputValidade, setInputValidade] = useState(1);
     const [inputDataInicial, setInpuDatatInicial] = useState("");
+    const [inputValorExecucao, setInpuValorExecucao] = useState(0);
     const [inputDataFinal, setInputDataFinal] = useState("");
     const [inputAutor, setInputAutor] = useState("");
 
@@ -42,6 +43,7 @@ export default function ModalCreatCard() {
             descricao: inputDescricao,
             viabilidade: inputValidade,
             status: "projetado",
+            valorDeExecucao: inputValorExecucao,
             dataInicio: dataInicio.toLocaleDateString("pt-BR"),
             dataFinal: dataFinal.toLocaleDateString("pt-BR"),
             iniciado: "",
@@ -53,6 +55,9 @@ export default function ModalCreatCard() {
 
         if (data.descricao === "") return toast.error("informer a descrição");
 
+        if (data.valorDeExecucao === 0)
+            return toast.error("informer o valor da execução");
+
         if (data.dataInicio === "Invalid Date")
             return toast.error("Ensira a data inicial");
 
@@ -62,15 +67,18 @@ export default function ModalCreatCard() {
         if (data.responsavel === "")
             return toast.error("ensira o Autor do projeto");
 
-        createCardProject(data);
+        const response = createCardProject(data);
 
-        // Zerando states
-        setInputTitulo("");
-        setInputDescricao("");
-        setInputValidade(1);
-        setInpuDatatInicial("");
-        setInputDataFinal("");
-        setInputAutor("");
+        if (response === true) {
+            // Zerando states
+            setInputTitulo("");
+            setInputDescricao("");
+            setInpuValorExecucao(0);
+            setInputValidade(1);
+            setInpuDatatInicial("");
+            setInputDataFinal("");
+            setInputAutor("");
+        }
     }
 
     return (
@@ -108,6 +116,16 @@ export default function ModalCreatCard() {
                         placeholder="Descrição do projeto"
                         onChange={(event) => {
                             setInputDescricao(event.target.value);
+                        }}
+                    />
+                </label>
+
+                <label htmlFor="">
+                    <input
+                        type="number"
+                        placeholder="Valor da Execução"
+                        onChange={(event) => {
+                            setInpuValorExecucao(+event.target.value);
                         }}
                     />
                 </label>

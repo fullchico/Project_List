@@ -32,6 +32,7 @@ export default function ModalEditCard() {
                 inputDescricao === "" ? dadoStorage.descricao : inputDescricao,
             viabilidade: inputValidade,
             status: dadoStorage.status,
+            valorDeExecucao: dadoStorage.valorDeExecucao,
             dataInicio: dadoStorage.dataInicio,
             dataFinal: dadoStorage.dataFinal,
             iniciado: dadoStorage.iniciado,
