@@ -81,7 +81,7 @@
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/FullBarbosa/DT_money.git DtMoney
+$ git clone https://github.com/FullBarbosa/DesafioHelo.git LIST_PROJECT
 
 # Install dependencies Yarn
 $ yarn install
