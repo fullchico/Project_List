@@ -97,7 +97,7 @@ $ npm install
     </a>
 
 <p>Para utilização da aplicação é necessario utilizar um serviço local</p>
-    <a href="https://igames-three.vercel.app/">
+    <a href="https://github.com/FullBarbosa/FullBarbosa-BackEndApiProjectHeloo">
     <img width="200px" src="src/assets_document_md/img/api_list.png" alt="da api">
     </a>
     <p>Siga a documentação da api para utilizar a aplicação</p>
