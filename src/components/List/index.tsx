@@ -12,12 +12,12 @@ interface PropsBoard {
 }
 
 export default function List({ title, button, typeFilter }: PropsBoard) {
-    const { list, hadleOpenModalCreateCard, loading } = useContext(CardContext);
+    const { list, hadleOpenModalCreateCard } = useContext(CardContext);
 
     return (
         <Container>
             <header>
-                {loading ? <h2>Loading...</h2> : <h2>{title}</h2>}
+                <h2>{title}</h2>
                 {button && (
                     <button
                         type="button"

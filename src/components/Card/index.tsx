@@ -25,7 +25,6 @@ export default function Card(props: CardProps) {
         cancelCard,
         desenvolvimentoCard,
         concluidoCard,
-        loading,
     } = useContext(CardContext);
 
     return (

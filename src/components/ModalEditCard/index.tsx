@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CardContext } from "../../hooks/CardContext";
 
 import { MdCancel } from "react-icons/md";
@@ -9,36 +9,27 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 export default function ModalEditCard() {
-    const {
-        isOpenModalEditCard,
-        hadleOpenModalEditCard,
-        dadoStorage,
-        editCardProject,
-    } = useContext(CardContext);
-
     const [inputDescricao, setInputDescricao] = useState("");
     const [inputValidade, setInputValidade] = useState(1);
 
+    const {
+        isOpenModalEditCard,
+        hadleOpenModalEditCard,
+        editCardProject,
+        dadoStorage,
+    } = useContext(CardContext);
+
     useEffect(() => {
         setInputValidade(dadoStorage.viabilidade);
+        setInputDescricao(dadoStorage.descricao);
     }, [dadoStorage]);
 
     function hadleEditProject() {
         const dado = {
-            id: dadoStorage.id,
-            responsavel: dadoStorage.responsavel,
-            titulo: dadoStorage.titulo,
-            descricao:
-                inputDescricao === "" ? dadoStorage.descricao : inputDescricao,
+            ...dadoStorage,
+            descricao: inputDescricao,
             viabilidade: inputValidade,
-            status: dadoStorage.status,
-            valorDeExecucao: dadoStorage.valorDeExecucao,
-            dataInicio: dadoStorage.dataInicio,
-            dataFinal: dadoStorage.dataFinal,
-            iniciado: dadoStorage.iniciado,
-            finalizado: dadoStorage.finalizado,
         };
-
         editCardProject(dado);
     }
 
@@ -51,10 +42,9 @@ export default function ModalEditCard() {
         >
             <Container>
                 <h2>Editar Projeto: {dadoStorage.titulo}</h2>
-
                 <button
                     className="react-modal-close"
-                    onClick={(event: FormEvent) => {
+                    onClick={(event) => {
                         event.preventDefault();
                         hadleOpenModalEditCard();
                     }}

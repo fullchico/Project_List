@@ -29,7 +29,6 @@ interface CardProps {
 
     isOpenModalCreateCard: boolean;
     isOpenModalEditCard: boolean;
-    loading: boolean;
 
     hadleOpenModalCreateCard: () => void;
     hadleOpenModalEditCard: () => void;
@@ -46,13 +45,8 @@ export const CardContext = createContext<CardProps>({} as CardProps);
 export function CardProvider({ children }: CardProviderProps) {
     // estado de armazenamento de Lista de projetos da api
     const [list, setList] = useState<ListProject[]>([]);
-    const [loading, setLoading] = useState(true);
 
-    // estados para modal
-    const [isOpenModalCreateCard, setIsOpenModalCreateCard] = useState(false);
-    const [isOpenModalEditCard, setIsOpenModalEditCard] = useState(false);
-
-    // estado para localStorage
+    // Valor por Id
     const [dadoStorage, setDadoStorage] = useState<ListProject>(() => {
         const storagedCard = localStorage.getItem("project");
         if (storagedCard) {
@@ -61,19 +55,18 @@ export function CardProvider({ children }: CardProviderProps) {
         return [];
     });
 
+    // estados para modal
+    const [isOpenModalCreateCard, setIsOpenModalCreateCard] = useState(false);
+    const [isOpenModalEditCard, setIsOpenModalEditCard] = useState(false);
+
     // Metodo get da api, buscando dados do backend
     useEffect(() => {
         api.get("list")
             .then((response) => setList(response.data))
             .catch(() => {
                 toast.error("Error ao carregar dados");
-                setLoading(true);
             })
-            .finally(() =>
-                setTimeout(() => {
-                    setLoading(false);
-                }, 1000)
-            );
+            .finally(() => setTimeout(() => {}, 1000));
     }, []);
 
     // Criar um novo projeto
@@ -119,13 +112,8 @@ export function CardProvider({ children }: CardProviderProps) {
 
     // mudança de estado para cancelado
     async function cancelCard(id: string) {
-        localStorage.setItem(
-            "project",
-            JSON.stringify(list.filter((dado) => dado.id.includes(id)))
-        );
-        const response = JSON.parse(localStorage.getItem("project")!);
+        const response = list.filter((dado) => dado.id.includes(id));
         const dado = response[0];
-        setDadoStorage(dado);
 
         const data = new Date();
         const editResponse = await api.put(`list/${dado.id}`, {
@@ -143,14 +131,8 @@ export function CardProvider({ children }: CardProviderProps) {
 
     // mudança de estado para conlcuido
     async function concluidoCard(id: string) {
-        localStorage.setItem(
-            "project",
-            JSON.stringify(list.filter((dado) => dado.id.includes(id)))
-        );
-
-        const response = JSON.parse(localStorage.getItem("project")!);
+        const response = list.filter((dado) => dado.id.includes(id));
         const dado = response[0];
-        setDadoStorage(dado);
 
         const data = new Date();
 
@@ -169,15 +151,8 @@ export function CardProvider({ children }: CardProviderProps) {
 
     // mudança do estado para  desenvolvimento
     async function desenvolvimentoCard(id: string) {
-        localStorage.setItem(
-            "project",
-            JSON.stringify(list.filter((dado) => dado.id.includes(id)))
-        );
-
-        const response = JSON.parse(localStorage.getItem("project")!);
+        const response = list.filter((dado) => dado.id.includes(id));
         const dado = response[0];
-
-        setDadoStorage(dado);
 
         const data = new Date();
 
@@ -200,9 +175,9 @@ export function CardProvider({ children }: CardProviderProps) {
             "project",
             JSON.stringify(list.filter((dado) => dado.id.includes(id)))
         );
-        const response = JSON.parse(localStorage.getItem("project")!);
-        const data = response[0];
-        setDadoStorage(data);
+
+        const dado = list.filter((dado) => dado.id.includes(id));
+        setDadoStorage(dado[0]);
         hadleOpenModalEditCard();
     }
 
@@ -222,6 +197,7 @@ export function CardProvider({ children }: CardProviderProps) {
         <CardContext.Provider
             value={{
                 list,
+                dadoStorage,
                 hadleOpenModalCreateCard,
                 isOpenModalCreateCard,
                 createCardProject,
@@ -229,11 +205,10 @@ export function CardProvider({ children }: CardProviderProps) {
                 hadleOpenModalEditCard,
                 editCard,
                 editCardProject,
-                dadoStorage,
+
                 cancelCard,
                 concluidoCard,
                 desenvolvimentoCard,
-                loading,
             }}
         >
             {children}
