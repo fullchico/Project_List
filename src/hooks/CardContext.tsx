@@ -65,8 +65,7 @@ export function CardProvider({ children }: CardProviderProps) {
             .then((response) => setList(response.data))
             .catch(() => {
                 toast.error("Error ao carregar dados");
-            })
-            .finally(() => setTimeout(() => {}, 1000));
+            });
     }, []);
 
     // Criar um novo projeto
@@ -182,7 +181,6 @@ export function CardProvider({ children }: CardProviderProps) {
     }
 
     // logica para abrir modal de criação
-
     function hadleOpenModalCreateCard() {
         setIsOpenModalCreateCard(!isOpenModalCreateCard);
     }
@@ -205,7 +203,6 @@ export function CardProvider({ children }: CardProviderProps) {
                 hadleOpenModalEditCard,
                 editCard,
                 editCardProject,
-
                 cancelCard,
                 concluidoCard,
                 desenvolvimentoCard,
