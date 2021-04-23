@@ -3,9 +3,11 @@ import { CardContext } from "../../hooks/CardContext";
 import { Container } from "./styles";
 
 export default function Summery() {
-    const { list } = useContext(CardContext);
+    const { list, hadleFilterStatus } = useContext(CardContext);
 
-    const iniciado = list.filter((iniciado) => iniciado.status === "iniciado");
+    const desenvolvimento = list.filter(
+        (desenvolvimento) => desenvolvimento.status === "desenvolvimento"
+    );
 
     const concluidos = list.filter(
         (concluido) => concluido.status === "concluido"
@@ -17,17 +19,31 @@ export default function Summery() {
 
     return (
         <Container>
-            <div>
-                <header>total: {iniciado.length}</header>
+            <div onClick={() => hadleFilterStatus("")}>
+                <header>Total: {list.length}</header>
+                <strong>Todos</strong>
+            </div>
+
+            <div
+                className="Iniciados"
+                onClick={() => hadleFilterStatus("desenvolvimento")}
+            >
+                <header>total:{desenvolvimento.length}</header>
                 <strong>Iniciados</strong>
             </div>
 
-            <div className="Concluidos">
+            <div
+                className="Concluidos"
+                onClick={() => hadleFilterStatus("concluido")}
+            >
                 <header>Total: {concluidos.length}</header>
                 <strong>Concluidos</strong>
             </div>
 
-            <div className="Cancelados">
+            <div
+                className="Cancelados"
+                onClick={() => hadleFilterStatus("cancelado")}
+            >
                 <header>Total: {cancelados.length}</header>
                 <strong>Cancelados</strong>
             </div>

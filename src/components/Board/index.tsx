@@ -1,23 +1,43 @@
+import { useContext } from "react";
+import { CardContext } from "../../hooks/CardContext";
 import List from "../List";
 import ModalCreatCard from "../ModalCreatCard";
 import ModalEditCard from "../ModalEditCard";
-import { Container, Content } from "./styles";
+import { Container, Content, ContentFilter } from "./styles";
 
 export default function Board() {
+    const { filterStatus } = useContext(CardContext);
     return (
         <Container>
-            <Content>
-                <ModalCreatCard />
-                <ModalEditCard />
+            <ModalCreatCard />
+            <ModalEditCard />
 
-                <List title="Projetado" button={true} typeFilter="projetado" />
+            {filterStatus !== "" ? (
+                <>
+                    <ContentFilter>
+                        <List typeFilter={filterStatus} />
+                    </ContentFilter>
+                </>
+            ) : (
+                <>
+                    <Content>
+                        <List
+                            title="Projetado"
+                            button={true}
+                            typeFilter="projetado"
+                        />
 
-                <List title="Desenvolvimento" typeFilter="iniciado" />
+                        <List
+                            title="Desenvolvimento"
+                            typeFilter="desenvolvimento"
+                        />
 
-                <List title="Concluidos" typeFilter="concluido" />
+                        <List title="Concluidos" typeFilter="concluido" />
 
-                <List title="Cancelados" typeFilter="cancelado" />
-            </Content>
+                        <List title="Cancelados" typeFilter="cancelado" />
+                    </Content>
+                </>
+            )}
         </Container>
     );
 }

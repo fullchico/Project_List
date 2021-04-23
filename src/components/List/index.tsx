@@ -6,7 +6,7 @@ import { Container } from "./styles";
 import { MdAdd } from "react-icons/md";
 
 interface PropsBoard {
-    title: string;
+    title?: string;
     button?: boolean;
     typeFilter?: string;
 }

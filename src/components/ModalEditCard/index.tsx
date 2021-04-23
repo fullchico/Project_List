@@ -38,7 +38,7 @@ export default function ModalEditCard() {
             isOpen={isOpenModalEditCard}
             onRequestClose={hadleOpenModalEditCard}
             overlayClassName="react-modal-overlay"
-            className="react-modal-content"
+            className="react-modal-content  animeLeftModal"
         >
             <Container>
                 <h2>Editar Projeto: {dadoStorage.titulo}</h2>

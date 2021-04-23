@@ -13,8 +13,10 @@ export const GlobalStyle = createGlobalStyle`
     
     --text-title: #363f5f;
     --text-body: #969cb3;
-    --background: #F0F2F5;
+   
     --shape: #FFFFFF;
+
+    --blue-baby:#4280dd;
 
     /* nivel  */
     --baixo: #FFB900;
@@ -48,6 +50,35 @@ button{
     cursor: pointer;
 }
 
+.animeLeft{
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeLeft 0.3s forwards;
+
+
+@keyframes animeLeft {
+  to{
+    opacity: 1;
+    transform: initial;
+  }
+}
+}
+
+
+ .animeLeftModal{
+  opacity: 0;
+  transform: translatey(-20px);
+  animation: animeLeft 0.3s forwards;
+
+
+@keyframes animeLeftModal {
+  to{
+    opacity: 1;
+    transform: initial;
+  }
+}
+}
+
 [disabled]{
     opacity: 0.6;
     cursor: not-allowed;
@@ -63,6 +94,8 @@ button{
         display:flex;
         align-items:center;
         justify-content: center;
+
+        
     }
     .react-modal-content{
         width: 100%;

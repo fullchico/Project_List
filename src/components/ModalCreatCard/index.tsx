@@ -84,7 +84,7 @@ export default function ModalCreatCard() {
             isOpen={isOpenModalCreateCard}
             onRequestClose={hadleOpenModalCreateCard}
             overlayClassName="react-modal-overlay"
-            className="react-modal-content"
+            className="react-modal-content animeLeftModal"
         >
             <Container>
                 <h2>Cadastrar Projeto</h2>

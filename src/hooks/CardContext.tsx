@@ -30,6 +30,8 @@ interface CardProps {
     isOpenModalCreateCard: boolean;
     isOpenModalEditCard: boolean;
 
+    filterStatus: string;
+
     hadleOpenModalCreateCard: () => void;
     hadleOpenModalEditCard: () => void;
     createCardProject: (date: ListProject) => void;
@@ -38,6 +40,7 @@ interface CardProps {
     cancelCard: (id: string) => void;
     concluidoCard: (id: string) => void;
     desenvolvimentoCard: (id: string) => void;
+    hadleFilterStatus: (filterStatus: string) => void;
 }
 
 export const CardContext = createContext<CardProps>({} as CardProps);
@@ -45,6 +48,8 @@ export const CardContext = createContext<CardProps>({} as CardProps);
 export function CardProvider({ children }: CardProviderProps) {
     // estado de armazenamento de Lista de projetos da api
     const [list, setList] = useState<ListProject[]>([]);
+
+    const [filterStatus, setFilterStatus] = useState("");
 
     // Valor por Id
     const [dadoStorage, setDadoStorage] = useState<ListProject>(() => {
@@ -77,8 +82,7 @@ export function CardProvider({ children }: CardProviderProps) {
 
             setList([...list, listDate]);
             toast.success("Projeto cadastrado!");
-            setIsOpenModalCreateCard(false);
-
+            hadleOpenModalCreateCard();
             if (response.status !== 200) throw new Error(response.headers);
         } catch (error) {
             toast.error("Error ao criar projeto, servidor off");
@@ -158,14 +162,14 @@ export function CardProvider({ children }: CardProviderProps) {
         const editResponse = await api.put(`list/${dado.id}`, {
             ...dado,
             iniciado: data.toLocaleDateString("pt-BR"),
-            status: "iniciado",
+            status: "desenvolvimento",
         });
 
         const newData = list.filter((data) => data.id !== editResponse.data.id);
         const date = editResponse.data;
 
         setList([date, ...newData]);
-        toast.info("Projeto Iniciado!");
+        toast.info("Projeto em desenvolvimento!");
     }
 
     // passando valor do prejto id, e injetando no localStorag
@@ -178,6 +182,10 @@ export function CardProvider({ children }: CardProviderProps) {
         const dado = list.filter((dado) => dado.id.includes(id));
         setDadoStorage(dado[0]);
         hadleOpenModalEditCard();
+    }
+
+    function hadleFilterStatus(filter: string) {
+        setFilterStatus(filter);
     }
 
     // logica para abrir modal de criação
@@ -206,6 +214,8 @@ export function CardProvider({ children }: CardProviderProps) {
                 cancelCard,
                 concluidoCard,
                 desenvolvimentoCard,
+                hadleFilterStatus,
+                filterStatus,
             }}
         >
             {children}

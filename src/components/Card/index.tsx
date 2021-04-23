@@ -28,7 +28,7 @@ export default function Card(props: CardProps) {
     } = useContext(CardContext);
 
     return (
-        <Container viabilidade={props.viabilidade}>
+        <Container viabilidade={props.viabilidade} className="animeLeft">
             <section>
                 {props.status === "concluido" ||
                 props.status === "cancelado" ? null : (
@@ -102,7 +102,7 @@ export default function Card(props: CardProps) {
                 {props.status === "concluido" ||
                 props.status === "cancelado" ? (
                     <button className={props.status}>{props.status}</button>
-                ) : props.status === "iniciado" ? (
+                ) : props.status === "desenvolvimento" ? (
                     <button onClick={() => concluidoCard(props.id)}>
                         finalizado
                     </button>

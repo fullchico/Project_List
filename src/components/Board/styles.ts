@@ -7,7 +7,17 @@ export const Container = styled.div`
     margin: 0 auto;
 `;
 
+export const ContentFilter = styled.div`
+    ul {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+`;
+
 export const Content = styled.div`
     display: grid;
+    justify-content: center;
+    align-items: center;
     grid-template-columns: repeat(4, 1fr);
 `;
