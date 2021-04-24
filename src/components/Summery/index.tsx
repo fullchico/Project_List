@@ -20,16 +20,15 @@ export default function Summery() {
     return (
         <Container>
             <div onClick={() => hadleFilterStatus("")}>
-                <header>Total: {list.length}</header>
-                <strong>Todos</strong>
+                <header>Projetos: {list.length}</header>
+                <strong>Inicio</strong>
             </div>
-
             <div
                 className="Iniciados"
                 onClick={() => hadleFilterStatus("desenvolvimento")}
             >
-                <header>total:{desenvolvimento.length}</header>
-                <strong>Iniciados</strong>
+                <header>Total:{desenvolvimento.length}</header>
+                <strong>Desenvoldimento</strong>
             </div>
 
             <div
