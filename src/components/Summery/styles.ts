@@ -13,7 +13,9 @@ export const Container = styled.div`
         color: var(--text-title);
         cursor: pointer;
 
-        box-shadow: 0px -2px 30px black;
+        box-shadow: 0px -1px 20px black;
+
+        transition: box-shadow 1s;
 
         &.Concluidos {
             background: var(--green);
@@ -23,6 +25,10 @@ export const Container = styled.div`
         &.Cancelados {
             background: var(--red);
             color: var(--shape);
+        }
+
+        &:hover {
+            box-shadow: 0px -2px 40px black;
         }
     }
 
